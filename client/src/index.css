@@ -1,1 +1,45 @@
-@import 'tailwindcss';
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+@import "tailwindcss";
+
+:root {
+  --font-outfit: "Outfit", sans-serif;
+  --primary-color: #1a1a1a;
+  --primary-dull-color: #2c2c2c;
+  --text-color: #fff;
+  --dull-text-color: #888;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--primary-color);
+  color: var(--text-color);
+  font-family: var(--font-outfit);
+}
+
+body {
+  background: var(--primary-color);
+  color: var(--text-color);
+  font-family: var(--font-outfit);
+}
+
+/* Optional: If using Tailwind's dark mode, ensure dark class is applied by default */
+.dark {
+  --primary-color: #1a1a1a;
+  --primary-dull-color: #2c2c2c;
+  --text-color: #fff;
+  --dull-text-color: #888;
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-orange-500;
+}
+
+.gradient-bg {
+  @apply bg-gradient-to-r from-violet-500 to-orange-500;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: transparent;
+}
