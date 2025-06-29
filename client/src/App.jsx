@@ -20,6 +20,7 @@ const App = () => {
         <Route path="/movie/:id/:date" element={<SeatLayoutPage />} />
         <Route path="/my-bookings" element={<MyBookingsPage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
+        
       </Routes>
     </>
   );

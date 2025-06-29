@@ -30,20 +30,30 @@ const dummyTrailers = [
 
 const TrailerSection = () => {
   const [currentTrailer, setCurrentTrailer] = useState(dummyTrailers[0]);
+  const [hasInteracted, setHasInteracted] = useState(false);
+
+  const handleTrailerClick = (trailer) => {
+    setCurrentTrailer(trailer);
+    setHasInteracted(true);
+  };
+
   return (
-    <section className="relative py-16 container mx-auto px-4">
-      <h2 className="text-3xl font-bold mb-8 text-center">Upcoming Trailers</h2>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="col-span-2 flex items-center justify-center w-full aspect-video bg-black rounded-lg overflow-hidden">
+    <section className="relative py-20 bg-primary bg-opacity-90 backdrop-blur-lg rounded-3xl shadow-2xl mx-auto my-16 max-w-6xl">
+      <h2 className="text-4xl font-extrabold mb-10 text-center text-white tracking-tight drop-shadow-lg">
+        Upcoming Trailers
+      </h2>
+      <div className="flex flex-col lg:flex-row gap-10 items-start">
+        {/* Video Player */}
+        <div className="flex-1 flex items-center justify-center w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-lg">
           {currentTrailer ? (
             <ReactPlayer
               url={currentTrailer.url}
               width="100%"
               height="100%"
               controls={true}
-              playing={true}
+              playing={hasInteracted}
               config={{
-                youtube: { playerVars: { autoplay: 1 } },
+                youtube: { playerVars: { autoplay: hasInteracted ? 1 : 0 } },
               }}
               style={{ maxWidth: "100%", maxHeight: "100%" }}
             />
@@ -53,24 +63,28 @@ const TrailerSection = () => {
             </div>
           )}
         </div>
-        <div className="lg:cols-span-1 flex flex-col space-y-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
+        {/* Trailer List */}
+        <div className="w-full lg:w-80 flex flex-col space-y-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar bg-dull rounded-2xl p-4 shadow-md">
+          <h3 className="text-xl font-bold text-white mb-4 text-center">
+            Select a Trailer
+          </h3>
           {dummyTrailers.map((trailer) => (
             <div
               key={trailer.id}
-              className={`flex items-center space-x-4 p-3 rounded-lg cursor-pointer transition-colors duration-200 ${
+              className={`flex items-center space-x-4 p-3 rounded-lg cursor-pointer transition-colors duration-200 border border-transparent ${
                 currentTrailer.id === trailer.id
-                  ? "bg-primary text-white"
-                  : "text-gray-500 hover:bg-primary hover:text-white"
+                  ? "bg-orange-500 text-white border-orange-400 shadow-lg"
+                  : "text-gray-300 hover:bg-primary hover:text-white hover:border-orange-400"
               }`}
-              onClick={() => setCurrentTrailer(trailer)}
+              onClick={() => handleTrailerClick(trailer)}
             >
               <img
                 src={trailer.thumbnail}
                 alt={trailer.title}
-                className="w-16 h-16 rounded-lg"
+                className="w-16 h-16 rounded-lg object-cover border border-gray-700"
               />
               <div>
-                <h3 className="font-semibold">{trailer.title}</h3>
+                <h3 className="font-semibold text-base">{trailer.title}</h3>
               </div>
             </div>
           ))}

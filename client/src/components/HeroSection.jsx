@@ -12,17 +12,17 @@ const HeroSection = () => {
         <img
           src={marverlLogo}
           alt="marvel logo"
-          className="mx-auto w-48 mb-4"
+          className="mx-auto w-48 mb-4 drop-shadow-lg"
         />
-        <h1 className="text-4xl font-bold text-gray-500 leading-tight">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-2">
           Avengers: Endgame
         </h1>
-        <p className="text-lg md:text-xl text-gray-400 mb-6">
+        <p className="text-lg md:text-xl text-gray-300 mb-8">
           Action, Sci-Fi, Drama • 2019 • 3h 1m • IMDB 8.4
         </p>
         <Link
           to="/movies"
-          className="text-5xl gradient-text font-bold hover:animate-pulse"
+          className="inline-block bg-orange-500 text-white text-lg md:text-xl font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-orange-400 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2"
         >
           Explore Movies
         </Link>
